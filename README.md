@@ -11,6 +11,7 @@ A simple and clean Laravel backend API implementation with authentication functi
 -   **Resource Transformers**: API resources for consistent JSON responses
 -   **Secure Password Handling**: Password hashing and validation with complexity requirements
 -   **Cookie-based Token Storage**: Secure token storage with HTTP-only cookies
+-   **Interactive API Documentation**: Auto-generated documentation using Scribe with Scalar theme
 
 ## Requirements
 
@@ -60,17 +61,50 @@ A simple and clean Laravel backend API implementation with authentication functi
     php artisan migrate
     ```
 
-6. **Start the development server**
+6. **Generate API documentation**
+
+    ```bash
+    php artisan scribe:generate
+    ```
+
+7. **Start the development server**
     ```bash
     php artisan serve
     ```
 
 ## API Documentation
 
+This project uses **Scribe** with **Scalar** theme to automatically generate beautiful, interactive API documentation.
+
 ### Base URL
 
 ```
 http://localhost:8000/api
+```
+
+### API Documentation URLs
+
+The API documentation is available in multiple formats:
+
+-   **Interactive Documentation (Scalar)**: `http://localhost:8000/docs`
+-   **OpenAPI Specification**: `http://localhost:8000/docs.openapi`
+-   **Postman Collection**: `http://localhost:8000/docs.postman`
+
+### About Scalar
+
+Scalar provides a modern, interactive API documentation experience with:
+
+-   **Beautiful UI**: Clean, responsive design that works on all devices
+-   **Interactive Testing**: Try API endpoints directly from the documentation
+-   **Code Examples**: Auto-generated code samples in multiple programming languages
+-   **OpenAPI Standard**: Full compatibility with OpenAPI 3.0 specification
+
+### Generating Documentation
+
+To regenerate the API documentation after making changes to your endpoints, run:
+
+```bash
+php artisan scribe:generate
 ```
 
 ### Authentication Endpoints
