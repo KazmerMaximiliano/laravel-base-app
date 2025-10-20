@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WEB\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
+});
+
+// Authentication Routes
+Route::middleware('guest')->group(function () {
+    Route::inertia('/login', 'Auth/Login')->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

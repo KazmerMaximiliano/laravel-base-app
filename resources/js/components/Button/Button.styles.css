@@ -1,0 +1,32 @@
+.button {
+  display: inline-block;
+  background: transparent;
+  border-radius: 3em;
+  padding: 1em 3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+  font-size: 0.7em;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.button--primary {
+  background-color: transparent;
+  border: 1px solid rgba(40, 53, 147, 0.15);
+  color: #283593;
+}
+
+.button--primary:hover {
+  border-color: rgba(40, 53, 147, 0.55);
+}
+
+.button--secondary {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.button--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+}

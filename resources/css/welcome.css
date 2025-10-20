@@ -19,41 +19,10 @@
   font-size: 1.2em;
 }
 
-.welcome a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
-  transition: color 0.2s ease;
-}
-
-.welcome a:hover {
-  color: #ffffff;
-  border-bottom-color: transparent;
-}
-
-.welcome .button {
-  display: inline-block;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 3em;
-  color: #ffffff;
-  padding: 1em 3em;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 0.25em;
-  font-size: 0.7em;
-  transition: border-color 0.2s ease;
-  cursor: pointer;
-}
-
-.welcome .button:hover {
-  border-color: rgba(255, 255, 255, 0.55);
-}
-
 .welcome .wrapper {
   position: relative;
   background-attachment: fixed;
-  background-image: url("../../../public/images/intro.svg");
+  background-image: url("../images/intro.svg");
   background-position: top right;
   background-repeat: no-repeat;
   background-size: 100% 100%;

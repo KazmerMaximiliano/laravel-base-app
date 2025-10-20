@@ -1,3 +1,5 @@
+import { Link } from "@/components";
+
 const Welcome = () => {
   return (
     <div className="welcome">
@@ -10,9 +12,10 @@ const Welcome = () => {
           </p>
           <ul className="actions">
             <li>
-              <a href="/docs" className="button scrolly">
-                API Documentation
-              </a>
+              <Link type="secondary" href="/login" label="Dashboard" />
+            </li>
+            <li>
+              <Link type="secondary" href="/docs" label="API Documentation" />
             </li>
           </ul>
         </div>
