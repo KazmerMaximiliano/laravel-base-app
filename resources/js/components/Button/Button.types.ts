@@ -5,4 +5,6 @@ export type ButtonProps = {
   onClick?: () => void;
   label: string;
   submit?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
 };

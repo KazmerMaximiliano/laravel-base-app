@@ -40,3 +40,20 @@
 .button--solid:hover {
   background-color: #1c258c;
 }
+
+.button:disabled,
+.button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button:disabled:hover,
+.button[disabled]:hover {
+  border-color: rgba(40, 53, 147, 0.15);
+  background-color: transparent;
+}
+
+.button--solid:disabled,
+.button--solid[disabled] {
+  background-color: #283593 !important;
+}

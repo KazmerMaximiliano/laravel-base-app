@@ -1,9 +1,0 @@
-{
-  "title": "Login with Email",
-  "description": " Enter your email and password to login",
-  "email_placeholder": "Enter your email",
-  "password_placeholder": "Enter your password",
-  "remember_me": "Remember Me",
-  "forgot_password": "Forgot Your Password?",
-  "login_button": "Login"
-}

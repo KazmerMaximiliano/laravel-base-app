@@ -25,9 +25,9 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 });
 
-// Authentication Routes
 Route::middleware('guest')->group(function () {
     Route::inertia('/login', 'Auth/Login')->name('login');
+    Route::inertia('/register', 'Auth/Register')->name('register');
     Route::post('/login', [AuthController::class, 'login']);
 });
 

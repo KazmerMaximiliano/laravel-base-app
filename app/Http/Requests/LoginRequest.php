@@ -3,14 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Traits\DetectsLocale;
 
 class LoginRequest extends FormRequest
 {
+    use DetectsLocale;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
+        $this->setLocaleFromRequest();
+
         return true;
     }
 
@@ -49,17 +53,14 @@ class LoginRequest extends FormRequest
      */
     public function expectsJson(): bool
     {
-        // Si la petición viene de Inertia, no queremos respuesta JSON
         if ($this->hasHeader('X-Inertia')) {
             return false;
         }
 
-        // Si es una petición a rutas API o tiene Accept: application/json, sí queremos JSON
         if ($this->is('api/*') || $this->hasHeader('Accept') && str_contains($this->header('Accept'), 'application/json')) {
             return true;
         }
 
-        // Por defecto, para compatibilidad con APIs externas
         return true;
     }
 
@@ -69,13 +70,11 @@ class LoginRequest extends FormRequest
      */
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
-        // Si es una petición de Inertia, dejamos que Laravel maneje la validación normalmente
         if ($this->hasHeader('X-Inertia')) {
             parent::failedValidation($validator);
             return;
         }
 
-        // Para peticiones API, retornamos JSON
         throw new \Illuminate\Http\Exceptions\HttpResponseException(
             response()->json([
                 'message' => 'The given data was invalid.',

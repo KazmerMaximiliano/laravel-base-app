@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import "./Login.styles.css";
 
 const Login = () => {
-  const { t } = useTranslation("login");
+  const { t } = useTranslation("auth");
 
   return (
     <section className="login">
@@ -12,7 +12,11 @@ const Login = () => {
         <div className="left-panel" />
         <div className="right-panel">
           <Form action="/login" method="post" className="form">
-            {({ errors }) => (
+            {({
+              errors,
+
+              processing,
+            }) => (
               <>
                 <h1 className="title">{t("title")}</h1>
                 <h2 className="description">{t("description")}</h2>
@@ -26,7 +30,24 @@ const Login = () => {
                   placeholder={t("password_placeholder")}
                   error={errors["password"]}
                 />
-                <Button submit label={t("login_button")} type="solid" />
+                <Button
+                  submit
+                  label={t("login_button")}
+                  type="solid"
+                  loading={processing}
+                />
+                <p className="login-link">
+                  {t("forgot_password")}
+                  <span>
+                    <a href="">{t("reset_here")}</a>
+                  </span>
+                </p>
+                <p className="login-link">
+                  {t("dont_have_account")}
+                  <span>
+                    <a href="/register">{t("signup_here")}</a>
+                  </span>
+                </p>
               </>
             )}
           </Form>

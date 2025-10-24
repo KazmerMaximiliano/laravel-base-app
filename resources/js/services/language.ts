@@ -104,7 +104,12 @@ class LanguageService implements LanguageHelper {
   }
 
   private getAxiosInstance(): AxiosInstance {
-    return window.axios || axios;
+    const axiosInstance = window.axios || axios;
+
+    // Ensure cookies are always sent
+    axiosInstance.defaults.withCredentials = true;
+
+    return axiosInstance;
   }
 
   private getCsrfToken(): string {

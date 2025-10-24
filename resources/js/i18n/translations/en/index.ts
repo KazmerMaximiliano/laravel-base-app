@@ -1,5 +1,5 @@
-import login from './login.json';
+import auth from './auth.json';
 
 export default {
-  login,
+  auth,
 };
