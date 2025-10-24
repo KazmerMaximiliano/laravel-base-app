@@ -2,7 +2,7 @@
   display: inline-block;
   background: transparent;
   border-radius: 3em;
-  padding: 1em 3em;
+  padding: 1.25em 3em;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.25em;
@@ -29,4 +29,14 @@
 
 .button--secondary:hover {
   border-color: rgba(255, 255, 255, 0.55);
+}
+
+.button--solid {
+  background-color: #283593;
+  border: none;
+  color: #ffffff;
+}
+
+.button--solid:hover {
+  background-color: #1c258c;
 }

@@ -114,6 +114,4 @@ class AuthController extends Controller
             'message' => 'Logged out successfully!'
         ])->withCookie($cookie);
     }
-
-
 }

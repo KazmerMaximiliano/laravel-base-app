@@ -14,13 +14,14 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request): RedirectResponse
     {
+
         $attributes = $request->validated();
 
         $user = User::where('email', $attributes['email'])->first();
 
         if (!$user || !Hash::check($attributes['password'], $user->password)) {
             return back()->withErrors([
-                'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+                'email' => __('login.invalid_credentials'),
             ])->onlyInput('email');
         }
 

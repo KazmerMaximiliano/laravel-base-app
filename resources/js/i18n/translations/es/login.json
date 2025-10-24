@@ -1,0 +1,9 @@
+{
+  "title": "Iniciar sesión con correo electrónico",
+  "description": "Ingrese su correo electrónico y contraseña para iniciar sesión",
+  "email_placeholder": "Ingrese su correo electrónico",
+  "password_placeholder": "Ingrese su contraseña",
+  "remember_me": "Recuérdame",
+  "forgot_password": "¿Olvidaste tu contraseña?",
+  "login_button": "Iniciar sesión"
+}

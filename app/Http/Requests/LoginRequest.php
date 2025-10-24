@@ -35,26 +35,47 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.exists' => 'The selected email does not exist.',
-            'password.required' => 'The password field is required.',
+            'email.required' => __('login.email_required'),
+            'email.email' => __('login.email_invalid'),
+            'email.exists' => __('login.email_not_exists'),
+            'password.required' => __('login.password_required'),
         ];
     }
 
     /**
      * Determine if the user wants JSON response.
+     * Returns false for Inertia requests to allow proper error handling,
+     * true for API requests (mobile apps, external platforms, etc.)
      */
     public function expectsJson(): bool
     {
+        // Si la petición viene de Inertia, no queremos respuesta JSON
+        if ($this->hasHeader('X-Inertia')) {
+            return false;
+        }
+
+        // Si es una petición a rutas API o tiene Accept: application/json, sí queremos JSON
+        if ($this->is('api/*') || $this->hasHeader('Accept') && str_contains($this->header('Accept'), 'application/json')) {
+            return true;
+        }
+
+        // Por defecto, para compatibilidad con APIs externas
         return true;
     }
 
     /**
      * Get the proper failed validation response for the request.
+     * Only applies to API requests, Inertia requests use Laravel's default behavior.
      */
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
+        // Si es una petición de Inertia, dejamos que Laravel maneje la validación normalmente
+        if ($this->hasHeader('X-Inertia')) {
+            parent::failedValidation($validator);
+            return;
+        }
+
+        // Para peticiones API, retornamos JSON
         throw new \Illuminate\Http\Exceptions\HttpResponseException(
             response()->json([
                 'message' => 'The given data was invalid.',

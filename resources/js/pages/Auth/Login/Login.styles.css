@@ -28,4 +28,26 @@
 
 .login .container .right-panel {
   flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-panel .form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 60%;
+}
+
+.form .title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #283593;
+}
+
+.form .description {
+  font-size: 1em;
+  color: #666666;
+  margin-bottom: 16px;
 }
