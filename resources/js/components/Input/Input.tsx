@@ -6,13 +6,14 @@ export const Input = ({
   defaultValue,
   placeholder,
   error,
+  type = "text",
   onChange,
 }: InputProps) => {
   return (
     <div className="input-wrapper">
       <input
         className="input"
-        type="text"
+        type={type}
         name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}

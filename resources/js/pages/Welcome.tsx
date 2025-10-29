@@ -12,7 +12,7 @@ const Welcome = () => {
           </p>
           <ul className="actions">
             <li>
-              <Link type="secondary" href="/login" label="Dashboard" />
+              <Link type="secondary" href="/dashboard" label="Dashboard" />
             </li>
             <li>
               <Link type="secondary" href="/docs" label="API Documentation" />

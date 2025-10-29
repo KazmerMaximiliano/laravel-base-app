@@ -6,7 +6,8 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n";
-import { LanguageProvider } from "./providers";
+import { LanguageProvider } from "./providers/LanguageProvider";
+import { ToastProvider } from "./providers/ToastProvider";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
@@ -31,9 +32,11 @@ createInertiaApp({
     const root = createRoot(el);
     root.render(
       <I18nextProvider i18n={i18n}>
-        <LanguageProvider>
-          <App {...props} />
-        </LanguageProvider>
+        <ToastProvider>
+          <LanguageProvider>
+            <App {...props} />
+          </LanguageProvider>
+        </ToastProvider>
       </I18nextProvider>,
     );
   },

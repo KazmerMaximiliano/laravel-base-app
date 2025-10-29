@@ -2,16 +2,20 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Traits\DetectsLocale;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
+    use DetectsLocale;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
+        $this->setLocaleFromRequest();
+
         return true;
     }
 
@@ -42,12 +46,12 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.unique' => 'The email has already been taken.',
-            'password.required' => 'The password field is required.',
-            'password.confirmed' => 'The password confirmation does not match.',
+            'name.required' => __('register.name_required'),
+            'email.required' => __('register.email_required'),
+            'email.email' =>  __('register.email_invalid'),
+            'email.unique' =>  __('register.email_unique'),
+            'password.required' => __('register.password_required'),
+            'password.confirmed' => __('register.password_confirmed'),
         ];
     }
 
@@ -56,6 +60,14 @@ class RegisterRequest extends FormRequest
      */
     public function expectsJson(): bool
     {
+        if ($this->hasHeader('X-Inertia')) {
+            return false;
+        }
+
+        if ($this->is('api/*') || $this->hasHeader('Accept') && str_contains($this->header('Accept'), 'application/json')) {
+            return true;
+        }
+
         return true;
     }
 
@@ -64,6 +76,11 @@ class RegisterRequest extends FormRequest
      */
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
+        if ($this->hasHeader('X-Inertia')) {
+            parent::failedValidation($validator);
+            return;
+        }
+
         throw new \Illuminate\Http\Exceptions\HttpResponseException(
             response()->json([
                 'message' => 'The given data was invalid.',

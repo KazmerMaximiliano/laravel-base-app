@@ -17,19 +17,27 @@ const Register = () => {
                 <h1 className="title">{t("register_title")}</h1>
                 <h2 className="description">{t("register_description")}</h2>
                 <Input
+                  name="name"
+                  placeholder={t("name_placeholder")}
+                  error={errors["name"]}
+                />
+                <Input
                   name="email"
+                  type="email"
                   placeholder={t("email_placeholder")}
                   error={errors["email"]}
                 />
                 <Input
                   name="password"
+                  type="password"
                   placeholder={t("password_placeholder")}
                   error={errors["password"]}
                 />
                 <Input
-                  name="password"
-                  placeholder={t("password_placeholder")}
-                  error={errors["password"]}
+                  name="password_confirmation"
+                  type="password"
+                  placeholder={t("password_confirmation_placeholder")}
+                  error={errors["password_confirmation"]}
                 />
                 <Button submit label={t("register_button")} type="solid" />
                 <p className="register-link">

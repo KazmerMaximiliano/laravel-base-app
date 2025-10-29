@@ -22,11 +22,13 @@ const Login = () => {
                 <h2 className="description">{t("description")}</h2>
                 <Input
                   name="email"
+                  type="email"
                   placeholder={t("email_placeholder")}
                   error={errors["email"]}
                 />
                 <Input
                   name="password"
+                  type="password"
                   placeholder={t("password_placeholder")}
                   error={errors["password"]}
                 />
@@ -39,7 +41,7 @@ const Login = () => {
                 <p className="login-link">
                   {t("forgot_password")}
                   <span>
-                    <a href="">{t("reset_here")}</a>
+                    <a href="/forgot-password">{t("reset_here")}</a>
                   </span>
                 </p>
                 <p className="login-link">
