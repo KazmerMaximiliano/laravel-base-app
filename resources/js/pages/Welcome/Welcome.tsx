@@ -1,5 +1,7 @@
 import { Link } from "@/components";
 
+import "./Welcome.styles.css";
+
 const Welcome = () => {
   return (
     <div className="welcome">

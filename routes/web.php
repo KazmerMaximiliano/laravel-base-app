@@ -4,7 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WEB\AuthController;
 use App\Http\Controllers\WEB\LanguageController;
-
+use App\Http\Controllers\WEB\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
-    Route::inertia('/users', 'Users')->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::inertia('/roles', 'Roles')->name('roles.index');
 });
 

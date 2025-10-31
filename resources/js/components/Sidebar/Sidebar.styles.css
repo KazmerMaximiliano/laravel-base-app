@@ -1,7 +1,11 @@
 .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100px;
   height: 100vh;
   transition: ease width 0.2s;
+  z-index: 1000;
 }
 
 .sidebar-header {

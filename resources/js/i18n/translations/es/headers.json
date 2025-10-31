@@ -1,0 +1,8 @@
+{
+  "id": "ID",
+  "name": "Nombre",
+  "email": "Correo electrónico",
+  "created_at": "Creado en",
+  "updated_at": "Actualizado en",
+  "email_verified_at": "Correo verificado en"
+}

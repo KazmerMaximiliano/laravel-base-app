@@ -2,6 +2,7 @@ import "../css/app.css";
 import "./bootstrap";
 
 import { createInertiaApp } from "@inertiajs/react";
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
@@ -10,6 +11,8 @@ import { LanguageProvider } from "./providers/LanguageProvider";
 import { ToastProvider } from "./providers/ToastProvider";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
+
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 createInertiaApp({
   title: () => appName,

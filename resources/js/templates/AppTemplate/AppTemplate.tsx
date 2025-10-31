@@ -18,7 +18,9 @@ export const AppTemplate: React.FC<{ children: React.ReactNode }> = ({
       </div>
       <Sidebar title={appName} items={routes} />
 
-      <div className="content">{children}</div>
+      <div className="content">
+        <div className="content-container">{children}</div>
+      </div>
     </div>
   );
 };
