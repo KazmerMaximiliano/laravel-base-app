@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
 import "./Sidebar.styles.css";
 
+import { useResponsive } from "@/hooks/useResponsive";
 import { useState } from "react";
 import { SidebarProps } from "./Sidebar.types";
 
 export const Sidebar = ({ title, items }: SidebarProps) => {
   const { t } = useTranslation("routes");
+  const { isMobile } = useResponsive();
 
   const [showFullTitle, setShowFullTitle] = useState(false);
 
@@ -18,7 +20,7 @@ export const Sidebar = ({ title, items }: SidebarProps) => {
       <div className="sidebar-header">
         <div className="sidebar-header-fix">
           <div className="sidebar-title">
-            {showFullTitle ? title : title?.charAt(0)}
+            {showFullTitle || isMobile ? title : title?.charAt(0)}
           </div>
         </div>
       </div>

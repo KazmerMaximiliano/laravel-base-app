@@ -1,5 +1,6 @@
 export * from "./Button/Button";
 export * from "./DataTable/DataTable";
+export * from "./IconButton/IconButton";
 export * from "./Input/Input";
 export * from "./Link/Link";
 export * from "./Sidebar/Sidebar";

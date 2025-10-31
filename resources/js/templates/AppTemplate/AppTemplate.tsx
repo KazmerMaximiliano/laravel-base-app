@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Sidebar, UserMenu } from "@/components";
+import { IconButton, Sidebar, UserMenu } from "@/components";
+import { useResponsive } from "@/hooks/useResponsive";
+import { FaBars } from "react-icons/fa";
 import { useAppTemplateRoutes } from "./AppTemplate.routes";
 import "./AppTemplate.styles.css";
 
@@ -10,13 +12,28 @@ export const AppTemplate: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const routes = useAppTemplateRoutes();
+  const { isMobile } = useResponsive();
+
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <div className="app-template">
       <div className="user-menu-container">
         <UserMenu />
       </div>
-      <Sidebar title={appName} items={routes} />
+
+      <div className="sidebar-button-container">
+        <IconButton
+          icon={FaBars}
+          onClick={() => setShowSidebar(!showSidebar)}
+        />
+      </div>
+
+      <div
+        className={`sidebar-container ${showSidebar ? "sidebar-container--active" : ""}`}
+      >
+        <Sidebar title={appName} items={routes} />
+      </div>
 
       <div className="content">
         <div className="content-container">{children}</div>
