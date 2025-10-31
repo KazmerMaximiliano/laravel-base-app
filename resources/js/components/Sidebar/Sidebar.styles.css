@@ -1,0 +1,126 @@
+.sidebar {
+  width: 100px;
+  height: 100vh;
+  transition: ease width 0.2s;
+}
+
+.sidebar-header {
+  height: 10vh;
+  background-color: #283593;
+}
+
+.sidebar-header-fix {
+  height: 10vh;
+  border-radius: 0 0 0 32px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-body {
+  height: 90vh;
+  border-radius: 0 32px 0 0;
+  background: #283593;
+  background-attachment: fixed;
+  background-image: url("../images/intro.svg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.sidebar-button {
+  display: inline-block;
+  background: transparent;
+  border-radius: 3.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+  font-size: 0.7em;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+  width: 3.5em;
+  height: 3.5em;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  animation: ease all 0.2s;
+}
+
+.sidebar-button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-button.active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.sidebar-button .sidebar-button-label {
+  display: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-button .sidebar-button-icon {
+  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-button.active .sidebar-button-label {
+  color: #ffffff;
+}
+
+.sidebar-button.active .sidebar-button-icon {
+  color: #ffffff;
+}
+
+.sidebar-button:disabled,
+.sidebar-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sidebar-title {
+  padding: 1.25em;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 0.75em;
+  background-color: #283593;
+  color: white;
+  animation: ease all 0.2s;
+}
+
+@media (min-width: 720px) {
+  .sidebar:hover {
+    width: 250px;
+  }
+
+  .sidebar:hover .sidebar-button {
+    padding: 1.25em 2em;
+    border-radius: 3em;
+    justify-content: flex-start;
+    width: 80%;
+    height: auto;
+  }
+
+  .sidebar:hover .sidebar-button .sidebar-button-label {
+    display: inline;
+  }
+
+  .sidebar:hover .sidebar-button .sidebar-button-icon {
+    margin-right: 1em;
+  }
+
+  .sidebar:hover .sidebar-title {
+    font-size: 1em;
+    background-color: transparent;
+    color: #283593;
+  }
+}

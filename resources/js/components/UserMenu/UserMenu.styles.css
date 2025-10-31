@@ -1,0 +1,65 @@
+.user-menu {
+  background: transparent;
+  border-radius: 3em;
+  padding: 0.5em 0.75em 0.5em 0.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(40, 53, 147, 0.15);
+}
+
+.user-avatar {
+  width: 2.25em;
+  height: 2.25em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  background-color: #283593;
+  color: #ffffff;
+}
+
+.user-caret {
+  width: 0.75em;
+  height: 0.75em;
+  border: 4px solid #283593;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg);
+  margin-left: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.user-caret--open {
+  transform: rotate(-135deg);
+  margin-top: 0.5em;
+}
+
+.user-menu-dropdown {
+  position: absolute;
+  margin-top: 7em;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid rgba(40, 53, 147, 0.15);
+  border-radius: 3em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 11em;
+}
+
+.user-menu-item {
+  padding: 1em 0.5em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  font-weight: 500;
+}

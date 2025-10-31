@@ -1,13 +1,13 @@
 import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
 
-const Dashboard = () => {
+const Roles = () => {
   return (
     <AppTemplate>
       <div style={{ margin: "auto" }}>
-        <h1>Dashboard</h1>
+        <h1>Roles</h1>
       </div>
     </AppTemplate>
   );
 };
 
-export default Dashboard;
+export default Roles;

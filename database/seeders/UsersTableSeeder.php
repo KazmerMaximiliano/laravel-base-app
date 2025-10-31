@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@laravelbaseapp.com',
             'password' => bcrypt('P4ssw0rd#'),
+            'email_verified_at' => now(),
         ]);
     }
 }

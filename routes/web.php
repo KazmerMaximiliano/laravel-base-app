@@ -48,6 +48,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
+
+    Route::inertia('/users', 'Users')->name('users.index');
+    Route::inertia('/roles', 'Roles')->name('roles.index');
 });
 
 Route::post('/language/change', [LanguageController::class, 'change'])->name('language.change');
