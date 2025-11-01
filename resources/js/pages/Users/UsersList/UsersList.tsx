@@ -9,6 +9,8 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
   const { t } = useTranslation("users");
   const { isMobile } = useResponsive();
 
+  console.log(pagination);
+
   return (
     <AppTemplate>
       <div className="page-header">
@@ -19,13 +21,7 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
           <Link type="primary" label={t("createUser")} />
         )}
       </div>
-      <DataTable
-        data={users}
-        currentPage={pagination.current_page}
-        pageSize={pagination.per_page}
-        paginationRoute="/users"
-        total={pagination.total}
-      />
+      <DataTable data={users} pagination={pagination} route="/users" />
     </AppTemplate>
   );
 };

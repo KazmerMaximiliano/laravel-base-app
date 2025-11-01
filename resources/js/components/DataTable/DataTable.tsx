@@ -3,18 +3,17 @@ import { themeQuartz } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useResponsive } from "../../hooks/useResponsive";
+import { IconButton } from "../IconButton/IconButton";
+import "./DataTable.styles.css";
 import { DataTableColDef, DataTableProps } from "./DataTable.types";
 
-export const DataTable = ({
-  data,
-  currentPage,
-  pageSize,
-  paginationRoute,
-  total,
-}: DataTableProps) => {
+export const DataTable = ({ data, route, pagination }: DataTableProps) => {
   const { t } = useTranslation("headers");
   const { isMobile, isTablet } = useResponsive();
+
+  const { current_page, from, last_page, per_page, to, total } = pagination;
 
   const [rowData, setRowData] = useState<Record<string, unknown>[]>([]);
   const [colDefs, setColDefs] = useState<DataTableColDef[]>([]);
@@ -35,14 +34,19 @@ export const DataTable = ({
   }, [isMobile, isTablet]);
 
   const defineRowData = () => {
-    if (total && total > 0 && currentPage && pageSize) {
+    if (isMobile) {
+      setRowData(data);
+      return;
+    }
+
+    if (total && total > 0 && current_page && per_page) {
       const allRows: Record<string, unknown>[] = [];
 
       for (let i = 0; i < total; i++) {
-        const pageForRow = Math.floor(i / pageSize) + 1;
-        const indexInPage = i % pageSize;
+        const pageForRow = Math.floor(i / per_page) + 1;
+        const indexInPage = i % per_page;
 
-        if (pageForRow === currentPage && indexInPage < data.length) {
+        if (pageForRow === current_page && indexInPage < data.length) {
           allRows[i] = data[indexInPage];
         } else {
           const placeholder: Record<string, unknown> = {
@@ -86,20 +90,21 @@ export const DataTable = ({
   };
 
   const handlePaginate = (current: number, size: number) => {
-    if (currentPage === current && pageSize === size) {
+    if (current_page === current && per_page === size) {
       return;
     }
 
-    if (paginationRoute) {
+    if (route) {
       router.get(
-        paginationRoute,
+        route,
         {
           currentPage: current,
           pageSize: size,
         },
         {
-          preserveState: true,
-          preserveScroll: true,
+          preserveState: false,
+          preserveScroll: false,
+          replace: true,
         },
       );
     }
@@ -109,16 +114,16 @@ export const DataTable = ({
     defineColumnsByData();
     defineRowData();
     handlePageSizeSelector();
-  }, [data, currentPage, pageSize, total, isMobile, isTablet]);
+  }, [data, current_page, per_page, total, isMobile, isTablet]);
 
   return (
-    <div style={{ height: "500px" }}>
+    <div className="data-table-container">
       <AgGridReact
         theme={responsiveTheme}
         rowData={rowData}
         columnDefs={colDefs}
         pagination={!isMobile}
-        paginationPageSize={pageSize || 10}
+        paginationPageSize={per_page || 10}
         paginationPageSizeSelector={pageSizeSelector}
         suppressPaginationPanel={false}
         paginationAutoPageSize={false}
@@ -133,19 +138,44 @@ export const DataTable = ({
         rowSelection={isMobile ? undefined : "single"}
         rowHeight={isMobile ? 48 : undefined}
         headerHeight={isMobile ? 40 : undefined}
-        onPaginationChanged={(e) => {
-          const size = e.api.paginationGetPageSize();
-          const current = e.api.paginationGetCurrentPage() + 1;
-          if (current !== currentPage || size !== pageSize) {
-            handlePaginate(current, size);
-          }
-        }}
+        onPaginationChanged={
+          !isMobile
+            ? (e) => {
+                const size = e.api.paginationGetPageSize();
+                const current = e.api.paginationGetCurrentPage() + 1;
+                if (current !== current_page || size !== per_page) {
+                  handlePaginate(current, size);
+                }
+              }
+            : undefined
+        }
         domLayout="autoHeight"
         autoSizeStrategy={{
           type: "fitGridWidth",
           defaultMinWidth: 100,
         }}
       />
+      {isMobile && (
+        <div className="pagination-controls">
+          <IconButton
+            disabled={current_page === 1}
+            onClick={() => {
+              handlePaginate(current_page - 1, per_page);
+            }}
+            icon={FaChevronLeft}
+          />
+          <span className="pagination-info">
+            {`${current_page} / ${last_page}`}
+          </span>
+          <IconButton
+            disabled={current_page === last_page}
+            onClick={() => {
+              handlePaginate(current_page + 1, per_page);
+            }}
+            icon={FaChevronRight}
+          />
+        </div>
+      )}
     </div>
   );
 };
