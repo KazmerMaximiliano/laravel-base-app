@@ -9,7 +9,7 @@
 }
 
 .icon-button--primary {
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid rgba(40, 53, 147, 0.15);
   color: #283593;
 }
@@ -19,7 +19,7 @@
 }
 
 .icon-button--secondary {
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }

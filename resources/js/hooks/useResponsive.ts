@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 interface UseResponsiveReturn {
   isMobile: boolean;
-  isSmallMobile: boolean;
   isTablet: boolean;
   isDesktop: boolean;
   screenWidth: number;
@@ -24,14 +23,12 @@ export const useResponsive = (): UseResponsiveReturn => {
     }
   }, []);
 
-  const isSmallMobile = screenWidth < 760;
   const isMobile = screenWidth < 768;
   const isTablet = screenWidth >= 768 && screenWidth < 1024;
   const isDesktop = screenWidth >= 1024;
 
   return {
     isMobile,
-    isSmallMobile,
     isTablet,
     isDesktop,
     screenWidth,

@@ -5,3 +5,12 @@ export type DataTableProps<T extends Record<string, unknown> = Record<string, un
   paginationRoute?: string;
   total?: number;
 }
+
+export type DataTableColDef = {
+  field: string;
+  headerName: string;
+  flex?: number;
+  minWidth?: number;
+  maxWidth?: number;
+  resizable?: boolean;
+}

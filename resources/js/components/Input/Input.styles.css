@@ -7,7 +7,7 @@
 
 .input {
   display: inline-block;
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid rgba(40, 53, 147, 0.15);
   color: #283593;
   border-radius: 3em;

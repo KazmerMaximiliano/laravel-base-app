@@ -23,16 +23,16 @@
   margin-top: 100px;
 }
 
-.user-menu-container {
+.header-container {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-}
-
-.sidebar-button-container {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 999;
 }
 
 @media (min-width: 768px) {

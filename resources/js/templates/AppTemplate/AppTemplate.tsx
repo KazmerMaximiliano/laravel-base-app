@@ -18,15 +18,12 @@ export const AppTemplate: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <div className="app-template">
-      <div className="user-menu-container">
-        <UserMenu />
-      </div>
-
-      <div className="sidebar-button-container">
+      <div className="header-container">
         <IconButton
           icon={FaBars}
           onClick={() => setShowSidebar(!showSidebar)}
         />
+        <UserMenu />
       </div>
 
       <div
