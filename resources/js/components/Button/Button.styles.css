@@ -41,6 +41,16 @@
   background-color: #1c258c;
 }
 
+.button--danger {
+  background-color: #f44336;
+  border: none;
+  color: #ffffff;
+}
+
+.button--danger:hover {
+  background-color: #d32f2f;
+}
+
 .button:disabled,
 .button[disabled] {
   cursor: not-allowed;

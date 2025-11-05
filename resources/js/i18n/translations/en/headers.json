@@ -2,6 +2,7 @@
   "id": "ID",
   "name": "Name",
   "email": "Email",
+  "roles": "Roles",
   "created_at": "Created at",
   "updated_at": "Updated at",
   "email_verified_at": "Email Verified at"

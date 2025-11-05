@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\WEB;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,9 +16,16 @@ class UserController extends Controller
         $pageSize = $request->input('pageSize', 10);
         $currentPage = $request->input('currentPage', 1);
 
-        $users = User::paginate($pageSize, ['*'], 'page', $currentPage);
+        $users = User::paginate($pageSize, ['id', 'name', 'email'], 'page', $currentPage)->through(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'roles' => $user->getRoleNames(),
+            ];
+        });
 
-        return Inertia::render('Users/UsersList', [
+        return Inertia::render('Users/List', [
             'users' => $users->items(),
             'pagination' => [
                 'current_page' => $users->currentPage(),
@@ -27,5 +36,58 @@ class UserController extends Controller
                 'to' => $users->lastItem(),
             ]
         ]);
+    }
+
+    public function create()
+    {
+
+        $roles = Role::all();
+
+        return Inertia::render('Users/Create', [
+            'roles' => $roles
+        ]);
+    }
+
+    public function store(UserRequest $request)
+    {
+        $data = $request->validated();
+
+        $user = User::create($data);
+
+        $user->assignRole($data['role']);
+
+        return redirect()->route('users.index')->with('success', __('User created successfully.'));
+    }
+
+    public function edit(User $user)
+    {
+        $roles = Role::all();
+
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        $data = $request->validated();
+
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        $user->syncRoles([$data['role']]);
+
+        return redirect()->route('users.index')->with('success', __('User updated successfully.'));
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', __('User deleted successfully.'));
     }
 }

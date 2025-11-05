@@ -8,7 +8,8 @@ export const useAppTemplateRoutes = (): SidebarItem[] => {
   const { url } = usePage();
 
   const isActiveRoute = (route: string): boolean => {
-    return url === route;
+    const urlWithoutQuery = url.split("?")[0];
+    return urlWithoutQuery === route;
   };
 
   return [

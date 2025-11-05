@@ -20,7 +20,7 @@ export const Button = ({
       {loading ? (
         <BeatLoader
           speedMultiplier={0.5}
-          color={type === "solid" ? "#ffffff" : "#283593"}
+          color={type === "solid" || type === "danger" ? "#ffffff" : "#283593"}
         />
       ) : (
         label

@@ -18,3 +18,27 @@
   color: #666;
   padding: 0 1rem;
 }
+
+.actions-cell {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.actions-header,
+.ag-header-cell[col-id="actions"],
+.ag-header-cell.actions-header,
+.ag-pinned-right-header .ag-header-cell[col-id="actions"],
+.ag-pinned-right-header .ag-header-cell.actions-header {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.ag-pinned-right-cols-container .actions-cell {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.ag-pinned-right-header {
+  border-left: none !important;
+  border-right: none !important;
+}

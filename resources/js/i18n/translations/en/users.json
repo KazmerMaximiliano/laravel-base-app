@@ -1,4 +1,17 @@
 {
-  "usersListTitle": "Users",
-  "createUser": "New User"
+  "users_list_title": "Users",
+  "create_user": "New User",
+  "edit_user": "Edit User",
+  "name_placeholder": "Enter full name",
+  "email_placeholder": "Enter email address",
+  "password_placeholder": "Enter password",
+  "password_confirmation_placeholder": "Confirm password",
+  "create_button": "Create User",
+  "edit_button": "Update User",
+  "select_role_placeholder": "Select a role",
+  "confirmDeleteTitle": "Confirm Deletion",
+  "confirmDeleteMessage": "Are you sure you want to delete {{name}}? This action cannot be undone.",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "userDeleted": "User has been deleted successfully."
 }

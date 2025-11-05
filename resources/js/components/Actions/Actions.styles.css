@@ -1,0 +1,51 @@
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.actions-container .action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: none;
+  padding: 0;
+}
+
+.actions-container .action--info {
+  background-color: rgba(40, 53, 147, 0.1);
+  color: #283593;
+}
+
+.actions-container .action--info:hover {
+  background-color: rgba(40, 53, 147, 0.75);
+  color: #fff;
+}
+
+.actions-container .action--edit {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.actions-container .action--edit:hover {
+  background-color: rgba(76, 175, 80, 0.75);
+  color: #fff;
+}
+
+.actions-container .action--delete {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+.actions-container .action--delete:hover {
+  background-color: rgba(244, 67, 54, 0.75);
+  color: #fff;
+}

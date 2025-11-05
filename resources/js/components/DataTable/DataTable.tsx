@@ -1,19 +1,28 @@
 import { router } from "@inertiajs/react";
-import { themeQuartz } from "ag-grid-community";
+import { ICellRendererParams, themeQuartz } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useResponsive } from "../../hooks/useResponsive";
+import { Actions } from "../Actions/Actions";
 import { IconButton } from "../IconButton/IconButton";
 import "./DataTable.styles.css";
 import { DataTableColDef, DataTableProps } from "./DataTable.types";
+import { NoRowsOverlay } from "./NoRowsOverlay";
 
-export const DataTable = ({ data, route, pagination }: DataTableProps) => {
+export const DataTable = ({
+  data,
+  route,
+  pagination,
+  onEdit,
+  onDelete,
+  onInfo,
+}: DataTableProps) => {
   const { t } = useTranslation("headers");
   const { isMobile, isTablet } = useResponsive();
 
-  const { current_page, from, last_page, per_page, to, total } = pagination;
+  const { current_page, last_page, per_page, total } = pagination;
 
   const [rowData, setRowData] = useState<Record<string, unknown>[]>([]);
   const [colDefs, setColDefs] = useState<DataTableColDef[]>([]);
@@ -34,46 +43,54 @@ export const DataTable = ({ data, route, pagination }: DataTableProps) => {
   }, [isMobile, isTablet]);
 
   const defineRowData = () => {
-    if (isMobile) {
-      setRowData(data);
-      return;
-    }
-
-    if (total && total > 0 && current_page && per_page) {
-      const allRows: Record<string, unknown>[] = [];
-
-      for (let i = 0; i < total; i++) {
-        const pageForRow = Math.floor(i / per_page) + 1;
-        const indexInPage = i % per_page;
-
-        if (pageForRow === current_page && indexInPage < data.length) {
-          allRows[i] = data[indexInPage];
-        } else {
-          const placeholder: Record<string, unknown> = {
-            __placeholder: true,
-            __rowIndex: i,
-            __page: pageForRow,
-          };
-
-          allRows[i] = placeholder;
-        }
-      }
-
-      setRowData(allRows);
-    } else {
-      setRowData(data);
-    }
+    setRowData(data);
   };
 
   const defineColumnsByData = () => {
     if (data.length === 0) return;
 
-    const columns = Object.keys(data[0]).map((key) => ({
+    const columns: DataTableColDef[] = Object.keys(data[0]).map((key) => ({
       field: key,
       headerName: t(key) || key,
     }));
 
+    if (onEdit || onDelete || onInfo) {
+      columns.push({
+        field: "actions",
+        headerName: "",
+        cellRenderer: renderActions,
+        sortable: false,
+        filter: false,
+        resizable: false,
+        pinned: "right",
+        cellClass: "actions-cell",
+        headerClass: "actions-header",
+        cellStyle: {
+          borderLeft: "none",
+          borderRight: "none",
+        },
+      });
+    }
+
     setColDefs(columns);
+  };
+
+  const renderActions = (
+    params: ICellRendererParams<Record<string, unknown>>,
+  ) => {
+    const rowData = params.data;
+
+    if (!rowData) {
+      return null;
+    }
+
+    return (
+      <Actions
+        onInfo={onInfo ? () => onInfo(rowData) : undefined}
+        onEdit={onEdit ? () => onEdit(rowData) : undefined}
+        onDelete={onDelete ? () => onDelete(rowData) : undefined}
+      />
+    );
   };
 
   const handlePageSizeSelector = () => {
@@ -122,7 +139,7 @@ export const DataTable = ({ data, route, pagination }: DataTableProps) => {
         theme={responsiveTheme}
         rowData={rowData}
         columnDefs={colDefs}
-        pagination={!isMobile}
+        pagination={false}
         paginationPageSize={per_page || 10}
         paginationPageSizeSelector={pageSizeSelector}
         suppressPaginationPanel={false}
@@ -133,49 +150,38 @@ export const DataTable = ({ data, route, pagination }: DataTableProps) => {
         suppressHorizontalScroll={false}
         alwaysShowHorizontalScroll={false}
         suppressMenuHide={isMobile}
-        suppressNoRowsOverlay={isMobile}
+        suppressNoRowsOverlay={false}
         suppressRowHoverHighlight={false}
         rowSelection={isMobile ? undefined : "single"}
         rowHeight={isMobile ? 48 : undefined}
         headerHeight={isMobile ? 40 : undefined}
-        onPaginationChanged={
-          !isMobile
-            ? (e) => {
-                const size = e.api.paginationGetPageSize();
-                const current = e.api.paginationGetCurrentPage() + 1;
-                if (current !== current_page || size !== per_page) {
-                  handlePaginate(current, size);
-                }
-              }
-            : undefined
-        }
         domLayout="autoHeight"
         autoSizeStrategy={{
           type: "fitGridWidth",
           defaultMinWidth: 100,
         }}
+        noRowsOverlayComponent={NoRowsOverlay}
       />
-      {isMobile && (
-        <div className="pagination-controls">
-          <IconButton
-            disabled={current_page === 1}
-            onClick={() => {
-              handlePaginate(current_page - 1, per_page);
-            }}
-            icon={FaChevronLeft}
-          />
-          <span className="pagination-info">
-            {`${current_page} / ${last_page}`}
-          </span>
-          <IconButton
-            disabled={current_page === last_page}
-            onClick={() => {
-              handlePaginate(current_page + 1, per_page);
-            }}
-            icon={FaChevronRight}
-          />
-        </div>
-      )}
+
+      <div className="pagination-controls">
+        <IconButton
+          disabled={current_page === 1}
+          onClick={() => {
+            handlePaginate(current_page - 1, per_page);
+          }}
+          icon={FaChevronLeft}
+        />
+        <span className="pagination-info">
+          {`${current_page} / ${last_page}`}
+        </span>
+        <IconButton
+          disabled={current_page === last_page}
+          onClick={() => {
+            handlePaginate(current_page + 1, per_page);
+          }}
+          icon={FaChevronRight}
+        />
+      </div>
     </div>
   );
 };

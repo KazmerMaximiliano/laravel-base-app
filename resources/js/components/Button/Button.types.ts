@@ -1,4 +1,4 @@
-type ButtonType = 'primary' | 'secondary' | 'solid';
+type ButtonType = 'primary' | 'secondary' | 'solid' | 'danger';
 
 export type ButtonProps = {
   type?: ButtonType;

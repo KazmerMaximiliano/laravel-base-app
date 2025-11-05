@@ -12,11 +12,7 @@ const Login = () => {
         <div className="left-panel" />
         <div className="right-panel">
           <Form action="/login" method="post" className="form">
-            {({
-              errors,
-
-              processing,
-            }) => (
+            {({ errors, processing }) => (
               <>
                 <h1 className="title">{t("title")}</h1>
                 <h2 className="description">{t("description")}</h2>
