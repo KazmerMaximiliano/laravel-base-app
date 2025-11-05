@@ -1,0 +1,17 @@
+{
+  "roles_list_title": "Roles",
+  "create_role": "New Role",
+  "edit_role": "Edit Role",
+  "name_placeholder": "Enter role name",
+  "guard_name_placeholder": "Enter guard name (default: web)",
+  "create_button": "Create Role",
+  "edit_button": "Update Role",
+  "select_permissions_placeholder": "Select permissions",
+  "confirmDeleteTitle": "Confirm Deletion",
+  "confirmDeleteMessage": "Are you sure you want to delete the role {{name}}? This action cannot be undone.",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "roleDeleted": "Role has been deleted successfully.",
+  "permissions": "Permissions",
+  "no_permissions": "No permissions assigned"
+}
