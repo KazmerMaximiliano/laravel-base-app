@@ -12,6 +12,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $ownerUser = User::create([
+            'name' => 'Owner User',
+            'email' => 'owner@laravelbaseapp.com',
+            'password' => bcrypt('P4ssw0rd#'),
+            'email_verified_at' => now(),
+        ]);
+
+        $ownerUser->assignRole('owner');
+
         $adminUser = User::create([
             'name' => 'Admin User',
             'email' => 'admin@laravelbaseapp.com',

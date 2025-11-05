@@ -14,12 +14,21 @@ class RolesTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // Owner Role
+        Role::create(['name' => 'owner']);
+
+        $ownerPermissions = ['get users', 'create users', 'edit users', 'delete users', 'get roles', 'create roles', 'edit roles', 'delete roles'];
+
+        foreach ($ownerPermissions as $permission) {
+            Permission::findByName($permission)->assignRole('owner');
+        }
+
         // Admin Role
         Role::create(['name' => 'admin']);
 
-        $userPermissions = ['get users', 'create users', 'edit users', 'delete users'];
+        $adminPermissions = ['get users', 'create users', 'edit users', 'delete users'];
 
-        foreach ($userPermissions as $permission) {
+        foreach ($adminPermissions as $permission) {
             Permission::findByName($permission)->assignRole('admin');
         }
     }

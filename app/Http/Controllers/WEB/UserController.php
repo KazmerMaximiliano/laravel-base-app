@@ -9,9 +9,26 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Spatie\Permission\Models\Role;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:get users', only: ['index']),
+            new Middleware('permission:create users', only: ['create']),
+            new Middleware('permission:create users', only: ['store']),
+            new Middleware('permission:edit users', only: ['edit']),
+            new Middleware('permission:edit users', only: ['update']),
+            new Middleware('permission:delete users', only: ['destroy']),
+        ];
+    }
+
     public function index(Request $request)
     {
         $pageSize = $request->input('pageSize', 10);
