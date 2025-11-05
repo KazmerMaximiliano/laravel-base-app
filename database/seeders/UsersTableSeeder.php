@@ -12,11 +12,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $adminUser = User::create([
             'name' => 'Admin User',
             'email' => 'admin@laravelbaseapp.com',
             'password' => bcrypt('P4ssw0rd#'),
             'email_verified_at' => now(),
         ]);
+
+        $adminUser->assignRole('admin');
     }
 }

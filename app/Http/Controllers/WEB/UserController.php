@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -16,17 +17,10 @@ class UserController extends Controller
         $pageSize = $request->input('pageSize', 10);
         $currentPage = $request->input('currentPage', 1);
 
-        $users = User::paginate($pageSize, ['id', 'name', 'email'], 'page', $currentPage)->through(function ($user) {
-            return [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'roles' => $user->getRoleNames(),
-            ];
-        });
+        $users = User::paginate($pageSize, ['*'], 'page', $currentPage);
 
         return Inertia::render('Users/List', [
-            'users' => $users->items(),
+            'users' => UserResource::collection($users->items())->resolve(),
             'pagination' => [
                 'current_page' => $users->currentPage(),
                 'last_page' => $users->lastPage(),
@@ -64,7 +58,7 @@ class UserController extends Controller
         $roles = Role::all();
 
         return Inertia::render('Users/Edit', [
-            'user' => $user,
+            'user' => new UserResource($user),
             'roles' => $roles
         ]);
     }

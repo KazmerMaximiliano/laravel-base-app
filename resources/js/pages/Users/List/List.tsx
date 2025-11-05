@@ -58,7 +58,7 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
         )}
       </div>
       <DataTable
-        data={[]}
+        data={users}
         pagination={pagination}
         route="/users"
         onEdit={handleEditUser}
