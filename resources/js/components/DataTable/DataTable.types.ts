@@ -1,4 +1,5 @@
-import { Pagination } from "@/types/common";
+import { Pagination } from "@/types";
+
 
 export type DataTableProps<T extends Record<string, unknown> = Record<string, unknown>> = {
   data: T[];

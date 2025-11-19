@@ -5,6 +5,7 @@ export type SidebarItem = {
   icon?: IconType;
   onClick?: () => void;
   active?: boolean;
+  visible?: boolean;
 };
 
 export type SidebarProps = {

@@ -1,3 +1,5 @@
+import { User } from "@/types";
+
 type Role = {
   created_at: string;
   guard_name: string;
@@ -6,12 +8,6 @@ type Role = {
   updated_at: string;
 };
 
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-};
 
 export type UsersEditProps = {
   user: User;

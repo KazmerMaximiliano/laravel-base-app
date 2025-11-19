@@ -25,7 +25,10 @@ class AuthController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->email_verified_at !== null) {
-                return inertia('Dashboard');
+                $user->role = $user->getRoleNames()->first();
+                return Inertia::render('Dashboard', [
+                    'user' => $user
+                ]);
             } else {
                 return redirect()->route('verification.notice');
             }

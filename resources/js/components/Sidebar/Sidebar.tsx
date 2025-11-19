@@ -25,18 +25,21 @@ export const Sidebar = ({ title, items }: SidebarProps) => {
         </div>
       </div>
       <div className="sidebar-body">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={`sidebar-button ${item.active ? "active" : ""}`}
-            onClick={item.onClick}
-          >
-            {item.icon && (
-              <item.icon size={14} className="sidebar-button-icon" />
-            )}
-            <div className="sidebar-button-label">{t(item.label)}</div>
-          </div>
-        ))}
+        {items.map(
+          (item, index) =>
+            item.visible !== false && (
+              <div
+                key={index}
+                className={`sidebar-button ${item.active ? "active" : ""}`}
+                onClick={item.onClick}
+              >
+                {item.icon && (
+                  <item.icon size={14} className="sidebar-button-icon" />
+                )}
+                <div className="sidebar-button-label">{t(item.label)}</div>
+              </div>
+            ),
+        )}
       </div>
     </div>
   );

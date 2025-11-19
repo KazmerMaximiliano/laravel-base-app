@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Enums\Permissions;
 use Spatie\Permission\Models\Role;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -20,12 +21,12 @@ class UserController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:get users', only: ['index']),
-            new Middleware('permission:create users', only: ['create']),
-            new Middleware('permission:create users', only: ['store']),
-            new Middleware('permission:edit users', only: ['edit']),
-            new Middleware('permission:edit users', only: ['update']),
-            new Middleware('permission:delete users', only: ['destroy']),
+            new Middleware('permission:' . Permissions::GET_USERS->value, only: ['index']),
+            new Middleware('permission:' . Permissions::CREATE_USERS->value, only: ['create']),
+            new Middleware('permission:' . Permissions::CREATE_USERS->value, only: ['store']),
+            new Middleware('permission:' . Permissions::EDIT_USERS->value, only: ['edit']),
+            new Middleware('permission:' . Permissions::EDIT_USERS->value, only: ['update']),
+            new Middleware('permission:' . Permissions::DELETE_USERS->value, only: ['destroy']),
         ];
     }
 
@@ -34,7 +35,9 @@ class UserController extends Controller implements HasMiddleware
         $pageSize = $request->input('pageSize', 10);
         $currentPage = $request->input('currentPage', 1);
 
-        $users = User::paginate($pageSize, ['*'], 'page', $currentPage);
+        $users = User::where('id', '!=', auth()->id())
+          ->where('id', '!=', 1)
+          ->paginate($pageSize, ['*'], 'page', $currentPage);
 
         return Inertia::render('Users/List', [
             'users' => UserResource::collection($users->items())->resolve(),

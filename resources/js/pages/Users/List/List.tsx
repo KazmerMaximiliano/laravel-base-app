@@ -2,11 +2,12 @@ import { DataTable, IconButton, Link, Modal } from "@/components";
 import { useResponsive } from "@/hooks/useResponsive";
 import { useToast } from "@/hooks/useToast";
 import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
+import { User } from "@/types";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaPlus } from "react-icons/fa";
-import { User, UsersListProps } from "./List.types";
+import { UsersListProps } from "./List.types";
 
 const UsersList = ({ users, pagination }: UsersListProps) => {
   const { t } = useTranslation("users");

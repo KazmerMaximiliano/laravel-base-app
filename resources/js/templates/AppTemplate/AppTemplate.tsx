@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { IconButton, Sidebar, UserMenu } from "@/components";
-import { useResponsive } from "@/hooks/useResponsive";
 import { FaBars } from "react-icons/fa";
 import { useAppTemplateRoutes } from "./AppTemplate.routes";
 import "./AppTemplate.styles.css";
@@ -12,8 +11,6 @@ export const AppTemplate: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const routes = useAppTemplateRoutes();
-  const { isMobile } = useResponsive();
-
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (

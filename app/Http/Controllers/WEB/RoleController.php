@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Http\Resources\RoleResource;
+use App\Enums\Permissions;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -17,12 +18,12 @@ class RoleController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:get roles', only: ['index']),
-            new Middleware('permission:create roles', only: ['create']),
-            new Middleware('permission:create roles', only: ['store']),
-            new Middleware('permission:edit roles', only: ['edit']),
-            new Middleware('permission:edit roles', only: ['update']),
-            new Middleware('permission:delete roles', only: ['destroy']),
+            new Middleware('permission:' . Permissions::GET_ROLES->value, only: ['index']),
+            new Middleware('permission:' . Permissions::CREATE_ROLES->value, only: ['create']),
+            new Middleware('permission:' . Permissions::CREATE_ROLES->value, only: ['store']),
+            new Middleware('permission:' . Permissions::EDIT_ROLES->value, only: ['edit']),
+            new Middleware('permission:' . Permissions::EDIT_ROLES->value, only: ['update']),
+            new Middleware('permission:' . Permissions::DELETE_ROLES->value, only: ['destroy']),
         ];
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Enums\Permissions;
 
 class RolesTableSeeder extends Seeder
 {
@@ -17,18 +18,14 @@ class RolesTableSeeder extends Seeder
         // Owner Role
         Role::create(['name' => 'owner']);
 
-        $ownerPermissions = ['get users', 'create users', 'edit users', 'delete users', 'get roles', 'create roles', 'edit roles', 'delete roles'];
-
-        foreach ($ownerPermissions as $permission) {
+        foreach (Permissions::ownerPermissions() as $permission) {
             Permission::findByName($permission)->assignRole('owner');
         }
 
         // Admin Role
         Role::create(['name' => 'admin']);
 
-        $adminPermissions = ['get users', 'create users', 'edit users', 'delete users'];
-
-        foreach ($adminPermissions as $permission) {
+        foreach (Permissions::adminPermissions() as $permission) {
             Permission::findByName($permission)->assignRole('admin');
         }
     }

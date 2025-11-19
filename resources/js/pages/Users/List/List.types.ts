@@ -1,11 +1,5 @@
-import { Pagination } from "@/types/common";
+import { Pagination, User } from "@/types";
 
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-  email_verified_at: string | null;
-}
 
 export type UsersListProps = {
   users: User[];
