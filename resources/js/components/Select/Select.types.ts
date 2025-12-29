@@ -4,10 +4,10 @@ export type SelectOption = {
 };
 
 export type SelectProps = {
+  options: SelectOption[];
   name?: string;
   defaultValue?: string;
   placeholder?: string;
   error?: string;
-  options: SelectOption[];
   onChange?: (value: string) => void;
 };

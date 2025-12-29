@@ -21,31 +21,31 @@
 }
 
 .actions-container .action--info {
-  background-color: rgba(40, 53, 147, 0.1);
-  color: #283593;
+  background-color: var(--color-info-100);
+  color: var(--color-primary);
 }
 
 .actions-container .action--info:hover {
-  background-color: rgba(40, 53, 147, 0.75);
-  color: #fff;
+  background-color: var(--color-info-400);
+  color: var(--color-white);
 }
 
 .actions-container .action--edit {
-  background-color: rgba(76, 175, 80, 0.1);
-  color: #4caf50;
+  background-color: var(--color-success-light);
+  color: var(--color-success);
 }
 
 .actions-container .action--edit:hover {
-  background-color: rgba(76, 175, 80, 0.75);
-  color: #fff;
+  background-color: var(--color-success-dark);
+  color: var(--color-white);
 }
 
 .actions-container .action--delete {
-  background-color: rgba(244, 67, 54, 0.1);
-  color: #f44336;
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
 }
 
 .actions-container .action--delete:hover {
-  background-color: rgba(244, 67, 54, 0.75);
-  color: #fff;
+  background-color: var(--color-danger-dark);
+  color: var(--color-white);
 }

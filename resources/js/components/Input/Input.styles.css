@@ -7,20 +7,20 @@
 
 .input {
   display: inline-block;
-  background-color: #fff;
-  border: 1px solid rgba(40, 53, 147, 0.15);
-  color: #283593;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-primary);
   border-radius: 3em;
   padding: 1em 2em;
   width: 100%;
 }
 
 .input:active {
-  border-color: rgba(40, 53, 147, 0.55);
+  border-color: var(--color-info-300);
 }
 
 .input-error {
-  color: #ff5252;
+  color: var(--color-danger);
   font-size: 0.85em;
   margin-left: 1em;
 }

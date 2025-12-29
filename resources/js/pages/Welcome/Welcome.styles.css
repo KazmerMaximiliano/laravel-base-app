@@ -1,12 +1,12 @@
 .welcome {
-  background: #283593;
-  color: rgba(255, 255, 255, 0.55);
+  background: var(--color-primary);
+  color: var(--color-white-300);
   min-height: 100vh;
   line-height: 1.75;
 }
 
 .welcome h1 {
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 2.5em;
   font-weight: bold;
   margin-bottom: 0.5em;
@@ -27,7 +27,7 @@
 }
 
 .welcome .wrapper.section {
-  background-color: #3949ab;
+  background-color: var(--color-primary-light);
 }
 
 .welcome .wrapper.fullscreen {

@@ -19,17 +19,17 @@
   transform: translateY(-75%) rotate(45deg);
   width: 6px;
   height: 6px;
-  border-right: 1.5px solid #283593;
-  border-bottom: 1.5px solid #283593;
+  border-right: 1.5px solid var(--color-primary);
+  border-bottom: 1.5px solid var(--color-primary);
   pointer-events: none;
 }
 
 .multiselect {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid rgba(40, 53, 147, 0.15);
-  color: #283593;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-primary);
   border-radius: 3em;
   width: 100%;
   cursor: pointer;
@@ -41,25 +41,25 @@
 
 .multiselect:focus {
   outline: none;
-  border-color: rgba(40, 53, 147, 0.55);
+  border-color: var(--color-info-300);
 }
 
 .multiselect:active {
-  border-color: rgba(40, 53, 147, 0.55);
+  border-color: var(--color-info-300);
 }
 
 .multiselect-error {
-  color: #ff5252;
+  color: var(--color-danger);
   font-size: 0.85em;
   margin-left: 1em;
 }
 
 .multiselect-placeholder {
-  color: #283593;
+  color: var(--color-primary);
 }
 
 .multiselect-tag {
-  background: #e5e7eb;
+  background: var(--color-gray-150);
   padding: 4px 12px;
   border-radius: 1em;
   font-size: 12px;
@@ -72,7 +72,7 @@
 
 .multiselect-tag-remove {
   cursor: pointer;
-  color: #6b7280;
+  color: var(--color-gray-400);
   font-weight: bold;
   margin-top: 2px;
 }
@@ -86,8 +86,8 @@
   top: 120%;
   left: 0;
   right: 0;
-  background: white;
-  border: 1px solid rgba(40, 53, 147, 0.15);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
   border-radius: 1em;
   max-height: 200px;
   overflow-y: auto;
@@ -103,5 +103,5 @@
 }
 
 .multiselect-option:hover {
-  background: rgba(40, 53, 147, 0.15);
+  background: var(--color-info-100);
 }

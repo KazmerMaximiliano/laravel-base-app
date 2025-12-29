@@ -10,13 +10,13 @@
 
 .sidebar-header {
   height: 10vh;
-  background-color: #283593;
+  background-color: var(--color-primary);
 }
 
 .sidebar-header-fix {
   height: 10vh;
   border-radius: 0 0 0 32px;
-  background-color: white;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +26,7 @@
 .sidebar-body {
   height: 90vh;
   border-radius: 0 32px 0 0;
-  background: #283593;
+  background: var(--color-primary);
   background-attachment: fixed;
   background-image: url("../images/intro.svg");
   background-position: top right;
@@ -59,29 +59,29 @@
 }
 
 .sidebar-button:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: var(--color-white-100);
 }
 
 .sidebar-button.active {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: var(--color-white-200);
 }
 
 .sidebar-button .sidebar-button-label {
   display: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-white-100);
 }
 
 .sidebar-button .sidebar-button-icon {
   margin-bottom: 2px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-white-100);
 }
 
 .sidebar-button.active .sidebar-button-label {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .sidebar-button.active .sidebar-button-icon {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .sidebar-button:disabled,
@@ -96,8 +96,8 @@
   font-size: 0.75em;
   font-weight: bold;
   line-height: 0.75em;
-  background-color: #283593;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   animation: ease all 0.2s;
 }
 

@@ -5,11 +5,24 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useResponsive } from "../../hooks/useResponsive";
+import { colorAliases } from "../../styles/colors";
 import { Actions } from "../Actions/Actions";
 import { IconButton } from "../IconButton/IconButton";
 import "./DataTable.styles.css";
 import { DataTableColDef, DataTableProps } from "./DataTable.types";
-import { NoRowsOverlay } from "./NoRowsOverlay";
+
+const NoRowsOverlay = () => {
+  const { t } = useTranslation("datatable");
+
+  return (
+    <div className="no-rows-overlay">
+      <div className="no-rows-content">
+        <h3 className="no-rows-title">{t("noRowsToShow")}</h3>
+        <p className="no-rows-description">{t("noRowsDescription")}</p>
+      </div>
+    </div>
+  );
+};
 
 export const DataTable = ({
   data,
@@ -30,7 +43,7 @@ export const DataTable = ({
 
   const responsiveTheme = useMemo(() => {
     return themeQuartz.withParams({
-      accentColor: "#283593",
+      accentColor: colorAliases.primaryColor,
       borderRadius: 6,
       browserColorScheme: "light",
       columnBorder: false,

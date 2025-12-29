@@ -1,4 +1,5 @@
 import { BeatLoader } from "react-spinners";
+import { colorAliases } from "../../styles/colors";
 import "./Button.styles.css";
 import { ButtonProps } from "./Button.types";
 
@@ -20,7 +21,11 @@ export const Button = ({
       {loading ? (
         <BeatLoader
           speedMultiplier={0.5}
-          color={type === "solid" || type === "danger" ? "#ffffff" : "#283593"}
+          color={
+            type === "solid" || type === "danger"
+              ? colorAliases.bgPrimary
+              : colorAliases.primaryColor
+          }
         />
       ) : (
         label

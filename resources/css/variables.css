@@ -1,0 +1,53 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #283593;
+  --color-primary-light: #3949ab;
+  --color-primary-dark: #1c258c;
+
+  /* Secondary Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Neutral Colors (Gray Scale) */
+  --color-gray-900: #333333;
+  --color-gray-700: #475569;
+  --color-gray-600: #666666;
+  --color-gray-500: #64748b;
+  --color-gray-400: #6b7280;
+  --color-gray-300: #cbd5e1;
+  --color-gray-200: #e0e0e0;
+  --color-gray-150: #e5e7eb;
+  --color-gray-100: #f9fafb;
+
+  /* Success Colors (Scale) */
+  --color-success: #4caf50;
+  --color-success-light: rgba(76, 175, 80, 0.1);
+  --color-success-dark: #357a3a;
+
+  /* Danger Colors (Scale) */
+  --color-danger: #f44336;
+  --color-danger-light: rgba(244, 67, 54, 0.1);
+  --color-danger-dark: #d32f2f;
+
+  /* Info Colors (Scale) */
+  --color-info: #283593;
+  --color-info-100: rgba(40, 53, 147, 0.1);
+  --color-info-200: rgba(40, 53, 147, 0.15);
+  --color-info-300: rgba(40, 53, 147, 0.55);
+  --color-info-400: rgba(40, 53, 147, 0.75);
+
+  /* White Transparency Scale */
+  --color-white-100: rgba(255, 255, 255, 0.15);
+  --color-white-200: rgba(255, 255, 255, 0.25);
+  --color-white-300: rgba(255, 255, 255, 0.55);
+
+  /* Black Transparency Scale */
+  --color-black-100: rgba(0, 0, 0, 0.1);
+  --color-black-200: rgba(0, 0, 0, 0.5);
+
+  /* Border Colors */
+  --color-border-light: var(--color-info-200);
+
+  /* Shadow */
+  --color-shadow: var(--color-black-100);
+}

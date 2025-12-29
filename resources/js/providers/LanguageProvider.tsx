@@ -1,6 +1,7 @@
 import React from "react";
 import { HashLoader } from "react-spinners";
 import { useLanguageSync } from "../hooks/useLanguageSync";
+import { colorAliases } from "../styles/colors";
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -17,7 +18,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
           height: "100vh",
         }}
       >
-        <HashLoader color="#283593" />
+        <HashLoader color={colorAliases.primaryColor} />
       </div>
     );
   }

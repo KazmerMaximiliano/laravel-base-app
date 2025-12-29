@@ -9,6 +9,6 @@ export type SidebarItem = {
 };
 
 export type SidebarProps = {
-  title?: string;
   items: SidebarItem[];
+  title?: string;
 };

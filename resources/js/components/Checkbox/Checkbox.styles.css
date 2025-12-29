@@ -5,21 +5,21 @@
   -moz-appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(40, 53, 147, 0.3);
+  border: 2px solid var(--color-info-100);
   border-radius: 4px;
-  background-color: #fff;
+  background-color: var(--color-white);
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
 }
 
 .checkbox:hover {
-  border-color: rgba(40, 53, 147, 0.55);
+  border-color: var(--color-info-300);
 }
 
 .checkbox:checked {
-  background-color: #283593;
-  border-color: #283593;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .checkbox:checked::after {
@@ -28,7 +28,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: var(--color-white);
   font-size: 12px;
   font-weight: bold;
 }

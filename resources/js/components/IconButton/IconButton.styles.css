@@ -9,33 +9,33 @@
 }
 
 .icon-button--primary {
-  background-color: #fff;
-  border: 1px solid rgba(40, 53, 147, 0.15);
-  color: #283593;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-primary);
 }
 
 .icon-button--primary:hover {
-  border-color: rgba(40, 53, 147, 0.55);
+  border-color: var(--color-info-300);
 }
 
 .icon-button--secondary {
-  background-color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white-100);
+  color: var(--color-white);
 }
 
 .icon-button--secondary:hover {
-  border-color: rgba(255, 255, 255, 0.55);
+  border-color: var(--color-white-300);
 }
 
 .icon-button--solid {
-  background-color: #283593;
+  background-color: var(--color-primary);
   border: none;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .icon-button--solid:hover {
-  background-color: #1c258c;
+  background-color: var(--color-primary-dark);
 }
 
 .icon-button:disabled,
@@ -45,12 +45,12 @@
 }
 
 .icon-button:disabled:hover,
-.icon-button[disabled]:hover {
-  border-color: rgba(40, 53, 147, 0.15);
+.icon-button:disabled:hover {
+  border-color: var(--color-border-light);
   background-color: transparent;
 }
 
 .icon-button--solid:disabled,
 .icon-button--solid[disabled] {
-  background-color: #283593 !important;
+  background-color: var(--color-primary) !important;
 }

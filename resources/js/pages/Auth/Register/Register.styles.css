@@ -17,7 +17,7 @@
 }
 
 .register .container .left-panel {
-  background: #283593;
+  background: var(--color-primary);
   background-attachment: fixed;
   background-image: url("../images/intro.svg");
   background-position: top right;
@@ -43,25 +43,25 @@
 .form .title {
   font-size: 1.5em;
   font-weight: bold;
-  color: #283593;
+  color: var(--color-primary);
 }
 
 .form .description {
   font-size: 1em;
-  color: #666666;
+  color: var(--color-gray-600);
   margin-bottom: 16px;
 }
 
 .register-link {
   margin-top: 8px;
   font-size: 0.9em;
-  color: #666666;
+  color: var(--color-gray-600);
   text-decoration: none;
   margin: auto;
 }
 
 .register-link a {
-  color: #283593;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
   margin-left: 4px;
