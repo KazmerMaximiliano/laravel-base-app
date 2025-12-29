@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -88,6 +89,8 @@ class AuthController extends Controller
         $token = $user->createToken($user->name . ' ' . $user->email . ' - ' .date('l jS \of F Y h:i:s A'))->plainTextToken;
         $cookie = cookie('token', $token, 60 * 24 * 7); // one week
 
+        event(new Registered($user));
+
         return response()->json([
             'user' => new UserResource($user),
             'token' => $token
@@ -114,6 +117,4 @@ class AuthController extends Controller
             'message' => 'Logged out successfully!'
         ])->withCookie($cookie);
     }
-
-
 }

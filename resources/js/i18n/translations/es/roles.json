@@ -1,0 +1,17 @@
+{
+  "roles_list_title": "Roles",
+  "create_role": "Nuevo Rol",
+  "edit_role": "Editar Rol",
+  "name_placeholder": "Ingrese el nombre del rol",
+  "guard_name_placeholder": "Ingrese el guard name (predeterminado: web)",
+  "create_button": "Crear Rol",
+  "edit_button": "Actualizar Rol",
+  "select_permissions_placeholder": "Seleccionar permisos",
+  "confirmDeleteTitle": "Confirmar Eliminación",
+  "confirmDeleteMessage": "¿Está seguro de que desea eliminar el rol {{name}}? Esta acción no se puede deshacer.",
+  "delete": "Eliminar",
+  "cancel": "Cancelar",
+  "roleDeleted": "El rol ha sido eliminado exitosamente.",
+  "permissions": "Permisos",
+  "no_permissions": "Sin permisos asignados"
+}

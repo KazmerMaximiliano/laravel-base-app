@@ -1,0 +1,17 @@
+{
+  "users_list_title": "Usuarios",
+  "create_user": "Nuevo Usuario",
+  "edit_user": "Editar Usuario",
+  "name_placeholder": "Ingrese el nombre completo",
+  "email_placeholder": "Ingrese la dirección de correo electrónico",
+  "password_placeholder": "Ingrese la contraseña",
+  "password_confirmation_placeholder": "Confirme la contraseña",
+  "create_button": "Crear Usuario",
+  "edit_button": "Actualizar Usuario",
+  "select_role_placeholder": "Seleccione un rol",
+  "confirmDeleteTitle": "Confirmar Eliminación",
+  "confirmDeleteMessage": "¿Estás seguro de que quieres eliminar a {{name}}? Esta acción no se puede deshacer.",
+  "delete": "Eliminar",
+  "cancel": "Cancelar",
+  "userDeleted": "El usuario ha sido eliminado con éxito."
+}

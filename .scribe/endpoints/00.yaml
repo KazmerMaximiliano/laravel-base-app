@@ -2,10 +2,12 @@ name: Authentication
 description: ''
 endpoints:
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/register
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -14,7 +16,6 @@ endpoints:
       description: 'Create a new user account and return user data with access token.'
       authenticated: false
       deprecated: false
-      custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -24,16 +25,18 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       name:
+        custom: []
         name: name
-        description: "The user's full name HELLO. Must not be greater than 255 characters."
+        description: "The user's full name. Must not be greater than 255 characters."
         required: true
         example: 'John Doe'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       email:
+        custom: []
         name: email
         description: "The user's email address. Must be a valid email address. Must not be greater than 255 characters."
         required: true
@@ -42,8 +45,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: "The user's password. Must be at least 8 characters and contain uppercase, lowercase, numbers and symbols."
         required: true
@@ -52,7 +56,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       name: 'John Doe'
       email: john@example.com
@@ -60,6 +64,7 @@ endpoints:
     fileParameters: []
     responses:
       -
+        custom: []
         status: 200
         content: |-
           {
@@ -75,8 +80,8 @@ endpoints:
           }
         headers: []
         description: ''
-        custom: []
       -
+        custom: []
         status: 422
         content: |-
           {
@@ -87,18 +92,18 @@ endpoints:
           }
         headers: []
         description: ''
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/login
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -107,7 +112,6 @@ endpoints:
       description: 'Authenticate user with email and password and return user data with access token.'
       authenticated: false
       deprecated: false
-      custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -117,6 +121,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
+        custom: []
         name: email
         description: "The user's email address. Must be a valid email address. The <code>email</code> of an existing record in the users table."
         required: true
@@ -125,8 +130,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: "The user's password."
         required: true
@@ -135,13 +141,14 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       email: john@example.com
       password: password123
     fileParameters: []
     responses:
       -
+        custom: []
         status: 200
         content: |-
           {
@@ -157,8 +164,8 @@ endpoints:
           }
         headers: []
         description: ''
-        custom: []
       -
+        custom: []
         status: 401
         content: |-
           {
@@ -166,18 +173,18 @@ endpoints:
           }
         headers: []
         description: ''
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/logout
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -186,7 +193,6 @@ endpoints:
       description: "Revoke the current user's access token and log them out."
       authenticated: true
       deprecated: false
-      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -200,6 +206,7 @@ endpoints:
     fileParameters: []
     responses:
       -
+        custom: []
         status: 200
         content: |-
           {
@@ -207,7 +214,6 @@ endpoints:
           }
         headers: []
         description: ''
-        custom: []
     responseFields: []
     auth:
       - headers
@@ -216,4 +222,3 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []

@@ -1,0 +1,33 @@
+.link {
+  display: inline-block;
+  background: transparent;
+  border-radius: 3em;
+  padding: 1em 3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+  font-size: 0.7em;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link--primary {
+  background-color: transparent;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-primary);
+}
+
+.link--primary:hover {
+  border-color: var(--color-info-300);
+}
+
+.link--secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-white-100);
+  color: var(--color-white);
+}
+
+.link--secondary:hover {
+  border-color: var(--color-white-300);
+}

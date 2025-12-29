@@ -1,0 +1,11 @@
+{
+  "id": "ID",
+  "name": "Name",
+  "email": "Email",
+  "roles": "Roles",
+  "permissions": "Permissions",
+  "guard_name": "Guard",
+  "created_at": "Created at",
+  "updated_at": "Updated at",
+  "email_verified_at": "Email Verified at"
+}

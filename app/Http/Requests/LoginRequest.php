@@ -3,14 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Traits\DetectsLocale;
 
 class LoginRequest extends FormRequest
 {
+    use DetectsLocale;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
+        $this->setLocaleFromRequest();
+
         return true;
     }
 
@@ -35,26 +39,42 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'The email field is required.',
-            'email.email' => 'The email must be a valid email address.',
-            'email.exists' => 'The selected email does not exist.',
-            'password.required' => 'The password field is required.',
+            'email.required' => __('login.email_required'),
+            'email.email' => __('login.email_invalid'),
+            'email.exists' => __('login.email_not_exists'),
+            'password.required' => __('login.password_required'),
         ];
     }
 
     /**
      * Determine if the user wants JSON response.
+     * Returns false for Inertia requests to allow proper error handling,
+     * true for API requests (mobile apps, external platforms, etc.)
      */
     public function expectsJson(): bool
     {
+        if ($this->hasHeader('X-Inertia')) {
+            return false;
+        }
+
+        if ($this->is('api/*') || $this->hasHeader('Accept') && str_contains($this->header('Accept'), 'application/json')) {
+            return true;
+        }
+
         return true;
     }
 
     /**
      * Get the proper failed validation response for the request.
+     * Only applies to API requests, Inertia requests use Laravel's default behavior.
      */
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
+        if ($this->hasHeader('X-Inertia')) {
+            parent::failedValidation($validator);
+            return;
+        }
+
         throw new \Illuminate\Http\Exceptions\HttpResponseException(
             response()->json([
                 'message' => 'The given data was invalid.',
