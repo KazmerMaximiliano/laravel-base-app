@@ -7,6 +7,7 @@ const Dashboard = ({ user }: DashboardProps) => {
   const { setUser } = useAuthStore();
 
   useEffect(() => {
+    console.log("Dashboard user:", user);
     setUser(user);
   }, [user, setUser]);
 
