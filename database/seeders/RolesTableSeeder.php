@@ -16,17 +16,17 @@ class RolesTableSeeder extends Seeder
     public function run(): void
     {
         // Owner Role
-        Role::create(['name' => 'owner']);
+        $ownerRole = Role::firstOrCreate(['name' => 'owner']);
 
         foreach (Permissions::ownerPermissions() as $permission) {
-            Permission::findByName($permission)->assignRole('owner');
+            $ownerRole->syncPermissions(Permissions::ownerPermissions());
         }
 
         // Admin Role
-        Role::create(['name' => 'admin']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
 
         foreach (Permissions::adminPermissions() as $permission) {
-            Permission::findByName($permission)->assignRole('admin');
+            $adminRole->syncPermissions(Permissions::adminPermissions());
         }
     }
 }

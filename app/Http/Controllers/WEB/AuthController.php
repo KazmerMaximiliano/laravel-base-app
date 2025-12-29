@@ -18,16 +18,33 @@ use Illuminate\Support\Str;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
     public function dashboard() {
         if (Auth::check()) {
-            $user = Auth::user();
+            $user = User::with('roles', 'permissions')->find(Auth::id());
             if ($user->email_verified_at !== null) {
-                $user->role = $user->getRoleNames()->first();
+                $roleName = $user->getRoleNames()->first();
+                $permissions = [];
+
+                if ($roleName) {
+                    $role = Role::findByName($roleName);
+                    $permissions = $role->permissions()->pluck('name')->toArray();
+                }
+
                 return Inertia::render('Dashboard', [
-                    'user' => $user
+                    'user' => [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'email_verified_at' => $user->email_verified_at,
+                        'created_at' => $user->created_at,
+                        'updated_at' => $user->updated_at,
+                        'role' => $roleName,
+                        'permissions' => $permissions,
+                    ]
                 ]);
             } else {
                 return redirect()->route('verification.notice');

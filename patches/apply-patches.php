@@ -25,7 +25,11 @@ foreach ($patches as $packageDir => $patchFiles) {
         }
 
         echo "Applying patch: $description\n";
-        $command = "cd '$targetDir' && patch -p1 < '$patchPath' 2>&1";
+
+        // Use patch with non-interactive flags to prevent hanging
+        $patchAbsolute = escapeshellarg($patchPath);
+        $command = "cd " . escapeshellarg($targetDir) . " && patch -p1 -N --no-backup-if-mismatch < $patchAbsolute 2>&1";
+
         $output = [];
         $returnCode = 0;
 
@@ -34,10 +38,14 @@ foreach ($patches as $packageDir => $patchFiles) {
         if ($returnCode === 0) {
             echo "✓ Patch applied successfully\n";
         } else {
-            if (strpos(implode("\n", $output), 'already applied') !== false) {
+            $outputText = implode("\n", $output);
+            if (strpos($outputText, 'already applied') !== false) {
                 echo "✓ Patch already applied\n";
             } else {
-                echo "Error applying patch: " . implode("\n", $output) . "\n";
+                echo "✗ Error applying patch (return code: $returnCode)\n";
+                if (!empty($output)) {
+                    echo "Output:\n" . $outputText . "\n";
+                }
             }
         }
     }
