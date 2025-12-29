@@ -44,11 +44,12 @@
 
 .user-menu-dropdown {
   position: absolute;
-  margin-top: 7em;
-  right: 0;
+  margin-top: 12%;
+  right: 1%;
   background-color: var(--color-white);
   border: 1px solid var(--color-border-light);
-  border-radius: 3em;
+  /* border-radius: 3em; */
+  border-radius: 1.5em;
   box-shadow: 0 4px 8px var(--color-shadow);
   z-index: 1000;
   min-width: 11em;
@@ -63,4 +64,24 @@
   justify-content: center;
   font-size: 0.95em;
   font-weight: 500;
+
+  &:first-child {
+    border-top-left-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+  }
+
+  &.clickable:hover {
+    background-color: var(--color-black-100);
+  }
+}
+
+.user-name {
+  font-weight: 500;
+  color: var(--color-primary);
 }

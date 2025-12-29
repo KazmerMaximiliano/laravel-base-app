@@ -19,14 +19,12 @@ const RolesList = ({ roles, pagination }: RolesListProps) => {
     router.get("/roles/create");
   };
 
-  const handleEditRole = (rowData: Record<string, unknown>) => {
-    const role = rowData as unknown as Role;
-    router.get(`/roles/${role.id}/edit`);
+  const handleEditRole = (rowData: Role) => {
+    router.get(`/roles/${rowData.id}/edit`);
   };
 
-  const handleDeleteRole = (rowData: Record<string, unknown>) => {
-    const role = rowData as unknown as Role;
-    setRoleToDelete(role);
+  const handleDeleteRole = (rowData: Role) => {
+    setRoleToDelete(rowData);
     setOpenDeleteModal(true);
   };
 
@@ -58,7 +56,7 @@ const RolesList = ({ roles, pagination }: RolesListProps) => {
         )}
       </div>
       <DataTable
-        data={roles as unknown as Record<string, unknown>[]}
+        data={roles}
         pagination={pagination}
         route="/roles"
         onEdit={handleEditRole}

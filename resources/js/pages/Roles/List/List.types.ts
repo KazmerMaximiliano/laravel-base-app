@@ -1,3 +1,5 @@
+import { Pagination } from "@/types";
+
 export interface Role {
   id: number;
   name: string;
@@ -15,14 +17,7 @@ export interface Permission {
   updated_at: string;
 }
 
-export interface RolesListProps {
+export type RolesListProps = {
   roles: Role[];
-  pagination: {
-    current_page: number;
-    last_page: number;
-    per_page: number;
-    total: number;
-    from: number;
-    to: number;
-  };
-}
+  pagination: Pagination;
+};

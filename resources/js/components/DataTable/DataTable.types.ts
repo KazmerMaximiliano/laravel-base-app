@@ -1,7 +1,8 @@
 import { Pagination } from "@/types";
+import { ColDef, ColGroupDef } from "ag-grid-community";
 
 
-export type DataTableProps<T extends Record<string, unknown> = Record<string, unknown>> = {
+export type DataTableProps<T extends object = object> = {
   data: T[];
   route: string;
   pagination: Pagination;
@@ -10,19 +11,4 @@ export type DataTableProps<T extends Record<string, unknown> = Record<string, un
   onInfo?: (rowData: T) => void;
 }
 
-export type DataTableColDef = {
-  field: string;
-  headerName: string;
-  flex?: number;
-  minWidth?: number;
-  maxWidth?: number;
-  width?: number;
-  resizable?: boolean;
-  sortable?: boolean;
-  filter?: boolean;
-  pinned?: "left" | "right";
-  cellRenderer?: any;
-  cellClass?: string | string[];
-  cellStyle?: Record<string, any>;
-  headerClass?: string | string[];
-}
+export type DataTableColDef = ColDef | ColGroupDef;

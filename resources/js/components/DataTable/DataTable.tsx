@@ -24,20 +24,20 @@ const NoRowsOverlay = () => {
   );
 };
 
-export const DataTable = ({
+const DataTableComponent = <T extends object>({
   data,
   route,
   pagination,
   onEdit,
   onDelete,
   onInfo,
-}: DataTableProps) => {
+}: DataTableProps<T>) => {
   const { t } = useTranslation("headers");
   const { isMobile, isTablet } = useResponsive();
 
   const { current_page, last_page, per_page, total } = pagination;
 
-  const [rowData, setRowData] = useState<Record<string, unknown>[]>([]);
+  const [rowData, setRowData] = useState(data);
   const [colDefs, setColDefs] = useState<DataTableColDef[]>([]);
   const [pageSizeSelector, setPageSizeSelector] = useState<number[]>([]);
 
@@ -88,9 +88,7 @@ export const DataTable = ({
     setColDefs(columns);
   };
 
-  const renderActions = (
-    params: ICellRendererParams<Record<string, unknown>>,
-  ) => {
+  const renderActions = (params: ICellRendererParams) => {
     const rowData = params.data;
 
     if (!rowData) {
@@ -198,3 +196,5 @@ export const DataTable = ({
     </div>
   );
 };
+
+export const DataTable = DataTableComponent as typeof DataTableComponent;

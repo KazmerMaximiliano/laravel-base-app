@@ -46,7 +46,10 @@ export const UserMenu = () => {
       <div className={`user-caret ${openMenu ? "user-caret--open" : ""}`} />
       {openMenu && (
         <div className="user-menu-dropdown">
-          <div className="user-menu-item" onClick={handleLogout}>
+          <div className="user-menu-item">
+            <span className="user-name">{user?.name}</span>
+          </div>
+          <div className="user-menu-item clickable" onClick={handleLogout}>
             {t("logout")}
           </div>
         </div>
