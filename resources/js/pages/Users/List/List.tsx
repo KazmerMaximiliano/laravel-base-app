@@ -1,12 +1,11 @@
-import { DataTable, IconButton, Link, Modal } from "@/components";
-import { useResponsive } from "@/hooks/useResponsive";
 import { useToast } from "@/hooks/useToast";
-import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
+import MainTemplate from "@/templates/MainTemplate/MainTemplate";
 import { User } from "@/types";
 import { router } from "@inertiajs/react";
+import { Plus } from "lucide-react";
+import { DataTable, IconButton, Link, Modal, useResponsive } from "neus-ui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaPlus } from "react-icons/fa";
 import { UsersListProps } from "./List.types";
 
 const UsersList = ({ users, pagination }: UsersListProps) => {
@@ -49,19 +48,33 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
   };
 
   return (
-    <AppTemplate>
+    <MainTemplate>
       <div className="page-header">
         <h1 className="page-title">{t("users_list_title")}</h1>
         {isMobile ? (
-          <IconButton icon={FaPlus} onClick={handleCreateUser} />
+          <IconButton icon={Plus} onClick={handleCreateUser} />
         ) : (
           <Link type="primary" label={t("create_user")} href="/users/create" />
         )}
       </div>
       <DataTable
         data={users}
+        columnLabels={{
+          id: t("id"),
+          name: t("name"),
+          email: t("email"),
+          role: t("role"),
+        }}
+        hiddenColumns={["id"]}
         pagination={pagination}
-        route="/users"
+        onPaginationChange={(params) => {
+          router.get("/users", {
+            currentPage: params.currentPage,
+            pageSize: params.pageSize,
+          });
+        }}
+        noDataTitle={t("noRowsToShow")}
+        noDataDescription={t("noRowsDescription")}
         onEdit={handleEditUser}
         onDelete={handleDeleteUser}
       />
@@ -72,7 +85,7 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
         onCancel={handleCancelDelete}
         confirmText={t("delete")}
         cancelText={t("cancel")}
-        confirmButtonType="danger"
+        confirmButtonColor="error"
       >
         {userToDelete && (
           <p>
@@ -82,7 +95,7 @@ const UsersList = ({ users, pagination }: UsersListProps) => {
           </p>
         )}
       </Modal>
-    </AppTemplate>
+    </MainTemplate>
   );
 };
 

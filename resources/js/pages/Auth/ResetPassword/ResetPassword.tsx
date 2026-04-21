@@ -1,5 +1,5 @@
-import { Button, Input } from "@/components";
 import { Form } from "@inertiajs/react";
+import { Button, Input } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import "./ResetPassword.styles.css";
 
@@ -27,7 +27,7 @@ const ResetPassword = ({ token, email }: ResetPasswordProps) => {
                 type="email"
                 placeholder={t("email_placeholder")}
                 error={errors["email"]}
-                defaultValue={email || ""}
+                value={email || ""}
               />
 
               <Input
@@ -45,9 +45,9 @@ const ResetPassword = ({ token, email }: ResetPasswordProps) => {
               />
 
               <Button
-                submit
+                type="submit"
                 label={t("reset_password_button")}
-                type="solid"
+                variant="solid"
                 loading={processing}
               />
 

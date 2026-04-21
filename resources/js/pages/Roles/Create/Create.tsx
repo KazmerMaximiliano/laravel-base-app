@@ -1,6 +1,6 @@
-import { Button, Input, MultiSelect } from "@/components";
-import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
+import MainTemplate from "@/templates/MainTemplate/MainTemplate";
 import { Form } from "@inertiajs/react";
+import { FormTemplate, Input, MultiSelect } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import { RolesCreateProps } from "./Create.types";
 
@@ -13,33 +13,29 @@ const RolesCreate = ({ permissions }: RolesCreateProps) => {
   }));
 
   return (
-    <AppTemplate>
+    <MainTemplate>
       <h1 className="page-title">{t("create_role")}</h1>
-      <Form action="/roles" method="post" className="form">
+      <Form action="/roles" method="post">
         {({ errors, processing }) => (
-          <>
+          <FormTemplate submitLabel={t("create_button")} loading={processing}>
             <Input
               name="name"
               type="text"
+              label={t("name_label")}
               placeholder={t("name_placeholder")}
               error={errors["name"]}
             />
             <MultiSelect
               name="permissions"
+              label={t("permissions_label")}
               placeholder={t("select_permissions_placeholder")}
               options={permissionsOptions}
               error={errors["permissions"]}
             />
-            <Button
-              submit
-              label={t("create_button")}
-              type="solid"
-              loading={processing}
-            />
-          </>
+          </FormTemplate>
         )}
       </Form>
-    </AppTemplate>
+    </MainTemplate>
   );
 };
 

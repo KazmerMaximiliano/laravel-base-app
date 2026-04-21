@@ -1,5 +1,5 @@
-import { Button } from "@/components";
 import { router } from "@inertiajs/react";
+import { Button } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import "./VerifyEmail.styles.css";
 
@@ -40,14 +40,15 @@ const VerifyEmail = () => {
         <p className="description">{t("verify_email_description")}</p>
 
         <Button
+          type="submit"
           label={t("resend_verification")}
           onClick={handleResendVerification}
-          type="solid"
+          variant="solid"
         />
         <Button
           label={t("logout") || "Log Out"}
           onClick={handleLogout}
-          type="primary"
+          color="primary"
         />
       </div>
     </section>

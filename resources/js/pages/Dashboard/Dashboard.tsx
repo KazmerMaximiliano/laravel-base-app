@@ -1,5 +1,5 @@
 import useAuthStore from "@/store/auth/auth.store";
-import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
+import MainTemplate from "@/templates/MainTemplate/MainTemplate";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { DashboardProps } from "./Dashboard.types";
@@ -13,11 +13,11 @@ const Dashboard = ({ user }: DashboardProps) => {
   }, [user, setUser]);
 
   return (
-    <AppTemplate>
+    <MainTemplate>
       <div style={{ margin: "auto" }}>
         <h1>{t("title", { name: user.name })}</h1>
       </div>
-    </AppTemplate>
+    </MainTemplate>
   );
 };
 

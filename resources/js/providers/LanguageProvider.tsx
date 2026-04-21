@@ -1,12 +1,13 @@
+import { useColors } from "neus-ui";
 import React from "react";
 import { HashLoader } from "react-spinners";
 import { useLanguageSync } from "../hooks/useLanguageSync";
-import { colorAliases } from "../styles/colors";
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { isReady } = useLanguageSync();
+  const colors = useColors();
 
   if (!isReady) {
     return (
@@ -18,7 +19,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
           height: "100vh",
         }}
       >
-        <HashLoader color={colorAliases.primaryColor} />
+        <HashLoader color={colors.primary.main} />
       </div>
     );
   }

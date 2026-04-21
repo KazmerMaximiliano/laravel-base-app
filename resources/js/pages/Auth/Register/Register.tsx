@@ -1,5 +1,5 @@
-import { Button, Input } from "@/components";
 import { Form } from "@inertiajs/react";
+import { Button, Input } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import "./Register.styles.css";
 
@@ -39,7 +39,11 @@ const Register = () => {
                   placeholder={t("password_confirmation_placeholder")}
                   error={errors["password_confirmation"]}
                 />
-                <Button submit label={t("register_button")} type="solid" />
+                <Button
+                  type="submit"
+                  label={t("register_button")}
+                  variant="solid"
+                />
                 <p className="register-link">
                   {t("already_have_account")}
                   <span>

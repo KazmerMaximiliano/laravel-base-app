@@ -1,4 +1,4 @@
-import { Link } from "@/components";
+import { Link } from "neus-ui";
 
 import "./Welcome.styles.css";
 

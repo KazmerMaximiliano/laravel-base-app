@@ -1,11 +1,11 @@
-import { DataTable, IconButton, Link, Modal } from "@/components";
-import { useResponsive } from "@/hooks/useResponsive";
 import { useToast } from "@/hooks/useToast";
-import { AppTemplate } from "@/templates/AppTemplate/AppTemplate";
+
+import MainTemplate from "@/templates/MainTemplate/MainTemplate";
 import { router } from "@inertiajs/react";
+import { Plus } from "lucide-react";
+import { DataTable, IconButton, Link, Modal, useResponsive } from "neus-ui";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaPlus } from "react-icons/fa";
 import { Role, RolesListProps } from "./List.types";
 
 const RolesList = ({ roles, pagination }: RolesListProps) => {
@@ -46,19 +46,31 @@ const RolesList = ({ roles, pagination }: RolesListProps) => {
   };
 
   return (
-    <AppTemplate>
+    <MainTemplate>
       <div className="page-header">
         <h1 className="page-title">{t("roles_list_title")}</h1>
         {isMobile ? (
-          <IconButton icon={FaPlus} onClick={handleCreateRole} />
+          <IconButton icon={Plus} onClick={handleCreateRole} />
         ) : (
           <Link type="primary" label={t("create_role")} href="/roles/create" />
         )}
       </div>
       <DataTable
         data={roles}
+        columnLabels={{
+          id: t("id"),
+          name: t("name"),
+          permissions: t("permissions"),
+        }}
         pagination={pagination}
-        route="/roles"
+        onPaginationChange={(params) => {
+          router.get("/roles", {
+            currentPage: params.currentPage,
+            pageSize: params.pageSize,
+          });
+        }}
+        noDataTitle={t("noRowsToShow")}
+        noDataDescription={t("noRowsDescription")}
         onEdit={handleEditRole}
         onDelete={handleDeleteRole}
       />
@@ -69,7 +81,7 @@ const RolesList = ({ roles, pagination }: RolesListProps) => {
         onCancel={handleCancelDelete}
         confirmText={t("delete")}
         cancelText={t("cancel")}
-        confirmButtonType="danger"
+        confirmButtonColor="error"
       >
         {roleToDelete && (
           <p>
@@ -79,7 +91,7 @@ const RolesList = ({ roles, pagination }: RolesListProps) => {
           </p>
         )}
       </Modal>
-    </AppTemplate>
+    </MainTemplate>
   );
 };
 

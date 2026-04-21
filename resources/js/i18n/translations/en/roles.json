@@ -2,8 +2,10 @@
   "roles_list_title": "Roles",
   "create_role": "New Role",
   "edit_role": "Edit Role",
+  "name_label": "Role Name",
   "name_placeholder": "Enter role name",
   "guard_name_placeholder": "Enter guard name (default: web)",
+  "permissions_label": "Permissions",
   "create_button": "Create Role",
   "edit_button": "Update Role",
   "select_permissions_placeholder": "Select permissions",
@@ -13,5 +15,14 @@
   "cancel": "Cancel",
   "roleDeleted": "Role has been deleted successfully.",
   "permissions": "Permissions",
-  "no_permissions": "No permissions assigned"
+  "no_permissions": "No permissions assigned",
+  "id": "ID",
+  "name": "Name",
+  "guard_name": "Guard",
+  "created_at": "Created at",
+  "updated_at": "Updated at",
+  "noRowsToShow": "No roles available",
+  "noRowsDescription": "No information to display at this time.",
+  "loading": "Loading...",
+  "noResultsFound": "No results found"
 }

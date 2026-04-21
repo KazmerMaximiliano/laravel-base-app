@@ -1,5 +1,5 @@
-import { Button, Input } from "@/components";
 import { Form } from "@inertiajs/react";
+import { Button, Input } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import "./Login.styles.css";
 
@@ -29,21 +29,15 @@ const Login = () => {
                   error={errors["password"]}
                 />
                 <Button
-                  submit
+                  type="submit"
                   label={t("login_button")}
-                  type="solid"
+                  variant="solid"
                   loading={processing}
                 />
                 <p className="login-link">
                   {t("forgot_password")}
                   <span>
                     <a href="/forgot-password">{t("reset_here")}</a>
-                  </span>
-                </p>
-                <p className="login-link">
-                  {t("dont_have_account")}
-                  <span>
-                    <a href="/register">{t("signup_here")}</a>
                   </span>
                 </p>
               </>

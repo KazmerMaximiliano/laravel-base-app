@@ -30,10 +30,13 @@ enum Permissions: string
     public static function ownerPermissions(): array
     {
         return [
+            // Users
             self::GET_USERS->value,
             self::CREATE_USERS->value,
             self::EDIT_USERS->value,
             self::DELETE_USERS->value,
+
+            // Roles
             self::GET_ROLES->value,
             self::CREATE_ROLES->value,
             self::EDIT_ROLES->value,
@@ -47,6 +50,7 @@ enum Permissions: string
     public static function adminPermissions(): array
     {
         return [
+            // Users
             self::GET_USERS->value,
             self::CREATE_USERS->value,
             self::EDIT_USERS->value,

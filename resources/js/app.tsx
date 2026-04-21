@@ -1,18 +1,16 @@
-import "../css/app.css";
-import "./bootstrap";
-
 import { createInertiaApp } from "@inertiajs/react";
-import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { ThemeProvider } from "neus-ui";
+import "neus-ui/dist/neus-ui.css";
 import { createRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
+import "../css/app.css";
+import "./bootstrap";
 import i18n from "./i18n";
 import { LanguageProvider } from "./providers/LanguageProvider";
 import { ToastProvider } from "./providers/ToastProvider";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
-
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 createInertiaApp({
   title: () => appName,
@@ -35,11 +33,13 @@ createInertiaApp({
     const root = createRoot(el);
     root.render(
       <I18nextProvider i18n={i18n}>
-        <ToastProvider>
-          <LanguageProvider>
-            <App {...props} />
-          </LanguageProvider>
-        </ToastProvider>
+        <ThemeProvider initialTheme={{ primaryColor: "#0b255b" }}>
+          <ToastProvider>
+            <LanguageProvider>
+              <App {...props} />
+            </LanguageProvider>
+          </ToastProvider>
+        </ThemeProvider>
       </I18nextProvider>,
     );
   },

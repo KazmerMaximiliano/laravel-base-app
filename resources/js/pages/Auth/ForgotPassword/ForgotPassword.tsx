@@ -1,6 +1,6 @@
-import { Button, Input } from "@/components";
 import { useToast } from "@/hooks/useToast";
 import { Form } from "@inertiajs/react";
+import { Button, Input } from "neus-ui";
 import { useTranslation } from "react-i18next";
 import "./ForgotPassword.styles.css";
 
@@ -36,9 +36,9 @@ const ForgotPassword = () => {
               />
 
               <Button
-                submit
+                type="submit"
                 label={t("send_reset_link")}
-                type="solid"
+                variant="solid"
                 loading={processing}
               />
 
